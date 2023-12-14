@@ -6,10 +6,10 @@
   "scripts": {
    
     
-   
+    "start": "node index.js",
     "build": "echo \"No build specified\" && exit 1",
-     "test": "echo \"No test specified\" && exit 1",
-    "start": "node index.js"
+     "test": "echo \"No test specified\" && exit 1"
+   
   },
   "keywords": [],
   "author": "",
