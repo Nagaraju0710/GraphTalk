@@ -7,7 +7,6 @@
    
     
     "start": "node index.js",
-    "build": "echo \"No build specified\" && exit 1",
      "test": "echo \"No test specified\" && exit 1"
    
   },
