@@ -1,30 +1,31 @@
-// server.js
-const express = require('express');
-const mongoose = require('mongoose');
-const dataRoutes = require('./routes/dataRoutes');
-const cors = require('cors')
+const express= require("express")
+const {connection}= require("./db");
+// const {userRoutes}= require("./routes/user.routes")
+const {postsRoutes}=require("./routes/posts.router")
+const cors=require("cors")
+require("dotenv").config()
+const app= express();
 
 
-
-const app = express();
-app.use(cors());
-const port = 8080;
-
-// Connect to MongoDB
-mongoose.connect('mongodb+srv://nani1210:Nani1210@cluster0.lyqhbhu.mongodb.net/GraphTalk', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-// Middleware to parse JSON
 app.use(express.json());
+app.use(cors())
 
-// Use routes
-app.use('/maindata', dataRoutes);
+app.get("/",(req,res)=>{
+    res.status(200).send({"msg":"This is a GraphTalk Dashboard"})
+})
 
-app.listen(port, () => {
-    console.log("connected to db");
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// app.use("/users",userRoutes)
+app.use("/posts",postsRoutes)
 
 
+const PORT=process.env.port
+
+app.listen(PORT,async()=>{
+    try{
+         await connection
+         console.log("Server is connected to Db")
+         console.log(`Server is running at ${PORT}`)
+    }catch(err){
+        console.log(err)
+    }
+})
